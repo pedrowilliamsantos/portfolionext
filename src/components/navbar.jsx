@@ -59,21 +59,21 @@ const navbar = () => {
     },
     opened: {
       x: 0,
-      transition : {
-        when:"beforeChildren",
-        staggerChildren:0.2
+      transition: {
+        when: "beforeChildren",
+        staggerChildren: 0.2
       }
     }
   }
 
   const listItemVariant = {
     closed: {
-      x:-10,
-      opacity:0
+      x: -10,
+      opacity: 0
     },
     opened: {
-      x:0,
-      opacity:1,
+      x: 0,
+      opacity: 1,
     }
   }
 
@@ -109,11 +109,13 @@ const navbar = () => {
         </button>
         {/* MENU LIST  */}
         {open && (
-          <motion.div variants={listVariants} initial="closed" animate="opened" className='absolute top-0 left-0 w-screen h-screen bg-black text-white flex flex-col items-center justify-center gap-8 text-4xl z-40'>
+          <motion.div variants={listVariants} initial="closed" animate="opened" className='absolute top-0 left-0 w-screen h-screen bg-black bg-opacity-90 text-white flex flex-col items-center justify-center gap-8 text-4xl z-40'>
             {links.map((link) => (
               <motion.div variants={listItemVariant} className='' key={link.title}>
                 <Link href={link.url}>
-                  {link.title}
+                  <div className='font-bold'>
+                    {link.title}
+                  </div>
                 </Link>
               </motion.div>
             ))}
