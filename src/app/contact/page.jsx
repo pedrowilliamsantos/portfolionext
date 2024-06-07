@@ -1,33 +1,36 @@
 "use client"
-
 import { motion } from "framer-motion"
 import { useRef, useState } from "react"
 import emailjs from '@emailjs/browser';
 
 const ContactPage = () => {
-
     const [success, setSuccess] = useState(false)
     const [error, setError] = useState(false)
+    const [loading, setLoading] = useState(false)
     const text = "Say Hello"
     const form = useRef();
+
     const sendEmail = (e) => {
         e.preventDefault();
         setError(false)
         setSuccess(false)
+        setLoading(true)
         emailjs
             .sendForm(
-                process.env.NEXT_PUBLIC_SERVICE_ID, 
-                process.env.NEXT_PUBLIC_TEMPLATE_ID, 
+                "service_vvyqrdr", 
+                "template_xqtrpbt", 
                 form.current, 
-                process.env.NEXT_PUBLIC_PUCLIC_KEY
+                "EOBH7ZK-A36ArBXir"
             )
             .then(
                 (result) => {
                    setSuccess(true);
+                   setLoading(false)
                    form.current.reset()
                 },
                 (error) => {
-                    setError(true)    
+                    setError(true)
+                    setLoading(false)
                 },
             );
     };
@@ -60,9 +63,11 @@ const ContactPage = () => {
                     <textarea name="user_message" placeholder="Escreva aqui..." rows={6} className="bg-transparent border-b-2 border-b-black outline-none resize-none" />
                     <span>My mail address is:</span>
                     <input name="user_email" type="text" placeholder="Seu email..." className="bg-transparent border-b-2 border-b-black outline-none" />
-                    <button className="bg-purple-200 rounded font-semibold text-gray-600 p-4">Send</button>
-                    {success && <span className="text-green-600 font-semibold">Your message has been successfully!</span>}
-                    {error && <span className="text-red-600 font-semibold" >Something went wrong!</span>}
+                    <button className="bg-purple-200 rounded font-semibold text-gray-600 p-4" disabled={loading}>
+                        {loading ? "Sending..." : "Send"}
+                    </button>
+                    {success && <span className="text-green-600 font-semibold">Your message has been successfully sent!</span>}
+                    {error && <span className="text-red-600 font-semibold">Something went wrong!</span>}
                 </form>
             </div>
         </motion.div>
