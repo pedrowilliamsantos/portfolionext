@@ -59,7 +59,7 @@ const ContactPage = () => {
                 </div>
                 {/* FORM CONTAINER  */}
                 <form onSubmit={sendEmail} ref={form} className="h-1/2 lg:h-full lg:w-1/2 bg-gray-50 rounded-xl text-xl flex flex-col gap-8 justify-center p-24">
-                    <span>Dear Pedro William, </span>
+                    <span>Dear ..., </span>
                     <textarea name="user_message" placeholder="Escreva aqui..." rows={6} className="bg-transparent border-b-2 border-b-black outline-none resize-none" />
                     <span>My mail address is:</span>
                     <input name="user_email" type="text" placeholder="Seu email..." className="bg-transparent border-b-2 border-b-black outline-none" />
